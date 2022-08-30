@@ -1,2 +1,6 @@
 class UsersController < ApplicationController
-end
+
+  def index
+    lawyers = Users.all
+    lawyers.where(type: :lawyer)
+  end
