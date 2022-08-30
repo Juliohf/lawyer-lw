@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-
   def index
-    lawyers = Users.all
-    lawyers.where(type: :lawyer)
+    @lawyers = policy_scope(User)
   end
+
+  def show
+    authorize @lawyer
+  end
+end
