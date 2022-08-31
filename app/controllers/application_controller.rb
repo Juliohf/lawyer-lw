@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_type, :phone, :cpf, :oab, :address, :email, :description])
-
+  end
 
   include Pundit::Authorization
 
@@ -28,6 +28,5 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
-
   end
 end
