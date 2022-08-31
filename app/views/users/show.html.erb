@@ -1,0 +1,12 @@
+<h2><%= @user.user_type %></h2>
+<% if @user.user_type == "lawyer" %>
+<p><%= @user.name %></p>
+<p><%= @user.email %></p>
+<p><%= @user.phone %></p>
+<p><%= @user.oab %></p>
+<p><%= @user.average_rating %></p>
+<% else %>
+<p><%= @user.name %></p>
+<p><%= @user.email %></p>
+<p><%= @user.phone %></p>
+<%end%>
