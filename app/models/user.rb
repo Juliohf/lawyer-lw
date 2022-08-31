@@ -8,6 +8,6 @@ class User < ApplicationRecord
   TYPES = ['lawyer', 'client']
   validates :user_type, inclusion: { in: TYPES }
 
-  validates :description
-  validates :description, length: { maximum: 150 }
+  validates :description, length: { maximum: 300 }
+ 
 end
