@@ -1,0 +1,25 @@
+.card-index-content{
+  margin: 0.5rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+
+.index-card-button{
+  position: absolute;
+  bottom: 40%;
+  right: 5rem;
+  a{
+    font-size: 2rem;
+    text-decoration: none;
+    color: $dark-brown;
+  }
+  a:hover {
+    font-size: 2.3rem;
+  }
+}
+
+// .card-index-content:hover {
+//   box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+//   transform: scale(1.10, 1.10);
+// }

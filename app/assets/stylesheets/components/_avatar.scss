@@ -18,3 +18,13 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+.avatar-super{
+  width: 11.5rem;
+  border-radius: 50%;
+}
+
+.avatar-super:hover{
+  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+  transform: scale(1.10, 1.10);
+}

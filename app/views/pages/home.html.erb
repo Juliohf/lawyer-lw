@@ -13,7 +13,7 @@
             <span class="visually-hidden">Next</span>
             </button>
             <div class="btn-container">
-              <a class="btn" href="#">Sign in</a>
+            <%= link_to "Sign in", user_session_path, class:"btn"  %>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="1000000">
@@ -31,7 +31,7 @@
               <p> Firm a contract and now you have a lawyer to solve your problems with zero burocracy </p>
               </div>
                 <div class="btn-container">
-              <a class="btn" href="#">Search for a lawyer</a>
+                <%= link_to "Search for a lawyer", users_path, class:"btn"  %>
           </div>
         </div>
       </div>
