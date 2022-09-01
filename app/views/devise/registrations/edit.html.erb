@@ -5,7 +5,21 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
-
+    <% if resource.user_type == "lawyer" %>
+      <%= f.input :oab,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "oab" }%>
+      <%= f.input :description,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "description" }%>
+    <% else %>
+      <%= f.input :cpf,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "cpf" }%>
+    <% end %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
@@ -21,6 +35,7 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+
   </div>
 
   <div class="form-actions">
