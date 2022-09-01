@@ -2,12 +2,8 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.where(type: :lawyer)
+      scope.all
     end
-  end
-
-  def index?
-    return true
   end
 
   def show?
