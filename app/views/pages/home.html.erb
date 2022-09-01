@@ -1,3 +1,40 @@
-<h1>Pages#home</h1>
-<h1>outro titulo</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="50000000">
+            <%= image_tag("home1.png") %>
+              <div class="carousel-content">
+              <p>Laywer helps you to find the right advocate to solve your problems</p>
+              </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+            <div class="btn-container">
+              <a class="btn" href="#">Sign in</a>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="1000000">
+            <%= image_tag("home2.png") %>
+            <div class="carousel-content1">
+              <%= image_tag("lawyer", size:"100") %>
+              <p> Browse a list of lawyers near your location </p>
+              </div>
+              <div class="carousel-content2">
+              <%= image_tag("chat", size:"100") %>
+              <p> Choose one and have a direct channel for exchange instant messages with the lawyer </p>
+              </div>
+              <div class="carousel-content3">
+              <%= image_tag("handshake", size:"100") %>
+              <p> Firm a contract and now you have a lawyer to solve your problems with zero burocracy </p>
+              </div>
+                <div class="btn-container">
+              <a class="btn" href="#">Search for a lawyer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
