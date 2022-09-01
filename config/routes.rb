@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
- review_lawyer
+
   resources :users, only: [:index, :show] do
     resources :reviews, only: [:new, :create]
   end
-
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   patch "restaurants/:id", to: "restaurants#update"
 
