@@ -8,6 +8,7 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "name" }%>
+    <%= f.input :photo, as: :file %>
    <%= f.input :user_type,
                 collection: User::TYPES,
                 required: true,
