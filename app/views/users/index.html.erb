@@ -1,9 +1,26 @@
 
 <div class="container">
-  <h2><%= @lawyers %></h2>
+  <% @lawyers.each do |lawyer| %>
+    <div class="row justify-content-center">
+      <div class="card-index-content text-center" m-3 p-3>
+        <div class="index-img"><%= image_tag("user(1).png", class: "avatar-super shadow-sm") %></div>
+        <div><h3 class="py-2"><%= lawyer.name %></h3></div>
+        <div><p><%= lawyer.description %></p></div>
+        <div class="index-card-button">
+          <%= link_to user_path(lawyer) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div style="width: 100%; height: 600px;"
     data-controller="map"
     id='map'
+    data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
