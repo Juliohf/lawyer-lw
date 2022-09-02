@@ -21,10 +21,10 @@
     </div>
   </div>
   <p><%= @user.average_rating %></p>
-    <%= link_to <i class="fa-solid fa-paper-plane"></i>, chatrooms_path(2) %>
-  <%= button_tag type: 'submit' , class: "message_button justify-center" do %>
+    <%= link_to  chatroom_path(3) do %>
     <i class="fa-solid fa-paper-plane"></i>
-  <% end %>
+      <% end %>
+
 
   <% else %>
   <p><%= @user.name %></p>
