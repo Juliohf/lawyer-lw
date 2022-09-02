@@ -2,8 +2,8 @@
 <div class="container">
   <% @lawyers.each do |lawyer| %>
     <div class="row justify-content-center">
-      <div class="card-index-content text-center" m-3 p-3>
-        <div class="index-img"><%= cl_image_tag lawyer.photo.key, class: "avatar-super shadow-sm") %></div>
+      <div class="card-index-content text-center m-3 p-3" >
+        <div class="index-img"> <%= cl_image_tag lawyer.photo.key, class: "avatar-super shadow-sm" %></div>
         <div><h3 class="py-2"><%= lawyer.name %></h3></div>
         <div><p><%= lawyer.description %></p></div>
         <div class="index-card-button">
