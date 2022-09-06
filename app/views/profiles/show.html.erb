@@ -1,0 +1,39 @@
+<div class="container background_review">
+  <% if @user.user_type == "lawyer" %>
+    <div class= "showlawyer">
+      <%= cl_image_tag @user.photo.key, class: "img-circle" %>
+          <div class= "row">
+      <div class="col col-1">
+        <i class="fa-solid fa-mobile-retro"></i>
+      </div>
+      <div class="col col-5">
+        <p><%= @user.name %></p>
+      </div>
+      <div class="col col-1">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+      <div class="col col-5">
+        <p><%= link_to edit_user_registration_path %></p>
+      </div>
+    </div>
+
+
+
+    <p>Chats</p>
+    <div class= "d-flex justify-content-center">
+      <%= cl_image_tag @user.photo.key, class: "img-circle" %>
+      <% @user.chatrooms.each do |chatroom| %>
+        <%= link_to  chatroom_path(chatroom) do %>
+          <i class="fa-solid fa-paper-plane"></i>
+        <% end %>
+      <% end %>
+
+
+    </div>
+
+
+
+  <% else %>
+     <div class= "showuser">
+  <% end %>
+</div>

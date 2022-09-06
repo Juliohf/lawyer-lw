@@ -7,3 +7,25 @@
   }
 }
 
+.img-circle {
+  border-radius: 50%;
+}
+
+.showlawyerprofile {
+  display: flex;
+  flex-direction: column;
+  align-items: justify;
+  p {
+    text-align: justify;
+  }
+}
+
+
+.showuser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    text-align: center;
+  }
+}
