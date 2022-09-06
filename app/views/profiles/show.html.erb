@@ -21,7 +21,7 @@
 
     <p>Chats</p>
     <div class= "d-flex justify-content-center">
-      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
+      <%= cl_image_tag @user.photo.key, class: "img-circle" %>
       <% @user.chatrooms.each do |chatroom| %>
         <%= link_to  chatroom_path(chatroom) do %>
           <i class="fa-solid fa-paper-plane"></i>
