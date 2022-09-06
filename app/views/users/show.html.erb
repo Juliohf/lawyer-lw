@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container background_review">
   <% if @user.user_type == "lawyer" %>
   <div class= "showlawyer">
     <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
@@ -21,10 +21,17 @@
     </div>
   </div>
   <p><%= @user.average_rating %></p>
-    <%= link_to  chatroom_path(3) do %>
-    <i class="fa-solid fa-paper-plane"></i>
-      <% end %>
 
+  <% if current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}) == false%>
+    <%= simple_form_for [@user, @chatroom] do |f| %>
+      <%= f.submit %>
+    <% end %>
+  <%  else %>
+    <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
+      <%= link_to  chatroom_path(caminho) do %>
+      <i class="fa-solid fa-paper-plane"></i>
+  <% end %>
+  <% end %>
 
   <% else %>
   <p><%= @user.name %></p>
@@ -44,9 +51,11 @@
     <%= simple_form_for [@user, @review] do |f| %>
       <%= f.input :comments %>
       <%= f.input :ratings %>
-      <%= button_tag type: 'submit' , class: "message_button" do %>
-        <i class="fa-solid fa-paper-plane"></i>
-      <% end %>
+      <div class= "d-flex justify-content-center">
+        <%= button_tag type: 'submit' , class: "message_button" do %>
+          <i class="fa-solid fa-paper-plane"></i>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
   <%= link_to "Add a Tag", new_lawyer_tag_path %>

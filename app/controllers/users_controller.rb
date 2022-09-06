@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @review = Review.new
+    @chatroom = Chatroom.new
   end
 
   def update
@@ -22,5 +23,6 @@ class UsersController < ApplicationController
     # No need for app/views/restaurants/update.html.erb
     redirect_to user_path(@user)
   end
+
 
 end

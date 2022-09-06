@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :reviews
+  has_many :chatrooms_as_lawyer, class_name: "Chatroom", foreign_key: :lawyer_id
+  has_many :chatrooms_as_client, class_name: "Chatroom", foreign_key: :client_id
   has_one_attached :photo
   has_many :lawyer_tags, dependent: :destroy
   has_many :tags, through: :lawyer_tags
