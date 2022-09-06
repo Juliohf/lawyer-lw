@@ -1,0 +1,25 @@
+<div class="container background_review">
+  <% if @user.user_type == "lawyer" %>
+    <div class= "showlawyer">
+      <%= cl_image_tag @user.photo.key, class: "img-circle" %>
+      <h2> <%= @user.name %></h2>
+      <%# <h2> <%= @user %>
+    </div>
+    <p>Chats</p>
+    <div class= "d-flex justify-content-center">
+      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
+      <%# @user.chatrooms.each do |chatroom| %>
+        <%#= link_to  chatroom_path(chatroom) do %>
+          <i class="fa-solid fa-paper-plane"></i>
+        <%# end %>
+      <%# end %>
+
+
+    </div>
+
+
+
+  <% else %>
+     <div class= "showuser">
+  <% end %>
+</div>
