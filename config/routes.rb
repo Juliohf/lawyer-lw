@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  resources :lawyer_tags, only: [:new, :create, :destroy]
+  resources :lawyer_categories, only: [:new, :create, :destroy]
+
   patch "restaurants/:id", to: "restaurants#update"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

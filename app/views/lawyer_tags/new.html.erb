@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6">
+      <h2>Add a new tag</h2>
+      <%# /plants/:plant_id/plant_tags %>
+      <%= simple_form_for [@lawyer_tag] do |f| %>
+        <%= f.input :tag,
+                    collection: Tag.all,
+                    input_html: {
+                      multiple: true,
+                      data: { controller: 'tom-select' }
+                    } %>
+        <%= f.submit 'Add tag!', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
