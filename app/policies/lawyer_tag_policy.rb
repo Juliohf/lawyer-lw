@@ -15,6 +15,6 @@ class LawyerTagPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end
