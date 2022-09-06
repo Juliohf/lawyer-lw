@@ -49,4 +49,10 @@
       <% end %>
     <% end %>
   <% end %>
+  <% @user.lawyer_tags.each do |ltag|%>
+  <p>
+  <%= ltag.tag.name %>
+  <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+  </p>
+  <% end %>
 </div>

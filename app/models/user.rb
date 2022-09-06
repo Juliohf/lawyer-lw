@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :reviews
   has_one_attached :photo
+  has_many :lawyer_tags, dependent: :destroy
+  has_many :tags, through: :lawyer_tags
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?

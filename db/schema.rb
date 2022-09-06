@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_02_132238) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_214935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,10 +42,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_132238) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lawyer_categories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_lawyer_categories_on_category_id"
+    t.index ["user_id"], name: "index_lawyer_categories_on_user_id"
+  end
+
+  create_table "lawyer_tags", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_lawyer_tags_on_tag_id"
+    t.index ["user_id"], name: "index_lawyer_tags_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -65,6 +88,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_132238) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,6 +120,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_132238) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "lawyer_categories", "categories"
+  add_foreign_key "lawyer_categories", "users"
+  add_foreign_key "lawyer_tags", "tags"
+  add_foreign_key "lawyer_tags", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "users"
