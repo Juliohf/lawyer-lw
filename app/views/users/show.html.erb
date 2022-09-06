@@ -59,7 +59,7 @@
     <% end %>
   <% end %>
   <%= link_to "Add a Tag", new_lawyer_tag_path %>
-   <%= link_to "Add a Category", new_lawyer_category_path %>
+  <%= link_to "Add a Category", new_lawyer_category_path %>
   <% @user.lawyer_tags.each do |ltag|%>
   <p>
   <%= ltag.tag.name %>
