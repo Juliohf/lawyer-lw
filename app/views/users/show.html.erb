@@ -45,6 +45,19 @@
           </div>
         <% end %>
       <% end %>
+  </div>
+  <p><%= @user.average_rating %></p>
+
+  <% if current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}) == false%>
+    <%= simple_form_for [@user, @chatroom] do |f| %>
+      <%= f.submit %>
+    <% end %>
+  <%  else %>
+    <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
+      <%= link_to  chatroom_path(caminho) do %>
+      <i class="fa-solid fa-paper-plane"></i>
+  <% end %>
+  <% end %>
 
   <% else %>
      <div class= "showuser">
