@@ -49,10 +49,18 @@
       <% end %>
     <% end %>
   <% end %>
+  <%= link_to "Add a Tag", new_lawyer_tag_path %>
+   <%= link_to "Add a Category", new_lawyer_category_path %>
   <% @user.lawyer_tags.each do |ltag|%>
   <p>
   <%= ltag.tag.name %>
   <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+  </p>
+  <% end %>
+    <% @user.lawyer_categories.each do |lcategory|%>
+  <p>
+  <%= lcategory.category.name %>
+  <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
   </p>
   <% end %>
 </div>

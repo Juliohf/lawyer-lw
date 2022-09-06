@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :lawyer_tags, only: [:new, :create, :destroy]
+  resources :lawyer_categories, only: [:new, :create, :destroy]
 
   patch "restaurants/:id", to: "restaurants#update"
 
