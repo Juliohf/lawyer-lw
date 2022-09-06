@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :reviews
+  has_many :chatrooms
   has_one_attached :photo
 
   geocoded_by :address
