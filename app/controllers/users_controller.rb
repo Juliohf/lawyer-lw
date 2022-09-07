@@ -1,13 +1,23 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    if params[:query].present?
-      @lawyers = policy_scope(User.global_search(params[:query]))
+    @tag = ""
+    @category = ""
+    @location = ""
+    @nocategory = "I do not know"
+
+    if @category == @nocategory
+      if @location.empty?
+        @lawyers = policy_scope(User.tag_search(@tag))
+      else
+        @lawyers_location = User.location_search(@location)
+        @lawyers = policy_scope(@lawyers_location.tag_search(@tag))
+      end
+    elsif @location.empty?
+      @lawyers = policy_scope(User.category_search(@category))
     else
-      @lawyers = policy_scope(User).where(user_type: "lawyer")
-    end
-    @markers = @lawyers.geocoded.map do |user|
-      { lat: user.latitude, lng: user.longitude }
+      @lawyers_location = User.location_search(@location)
+      @lawyers = policy_scope(@lawyers_location.category_search(@category))
     end
   end
 
