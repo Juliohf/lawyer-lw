@@ -6,6 +6,16 @@ GIT
       actionpack (>= 5.2)
       activemodel (>= 5.2)
 
+GIT
+  remote: https://github.com/lhoeg/responses-api-gem.git
+  revision: 6003b3e21be4397816d853340d1de38f3ef5fde3
+  specs:
+    responses_api_gem (0.0.2)
+      hashie (~> 3.0.0)
+      json
+      rack
+      rest-client (>= 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,6 +133,7 @@ GEM
     geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashie (3.0.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -136,6 +147,7 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
+    json (2.6.2)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -298,6 +310,7 @@ DEPENDENCIES
   pundit
   rails (~> 7.0.3, >= 7.0.3.1)
   redis (~> 4.0)
+  responses_api_gem!
   sassc-rails
   selenium-webdriver
   simple_form!
