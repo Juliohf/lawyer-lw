@@ -19,4 +19,15 @@ class User < ApplicationRecord
   validates :user_type, inclusion: { in: TYPES }
 
   validates :description, length: { maximum: 300 }
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [:address],
+    associated_against: {
+      tags: [:name],
+      categories: [:name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
