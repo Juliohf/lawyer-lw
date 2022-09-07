@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6">
+      <h2>Add a new tag</h2>
+      <%= simple_form_for [@lawyer_category] do |f| %>
+        <%= f.input :category,
+                    collection: Category.all,
+                    input_html: {
+                      multiple: true,
+                      data: { controller: 'tom-select' }
+                    } %>
+        <%= f.submit 'Add Category!', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

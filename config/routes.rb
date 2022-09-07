@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   get "/profile", to: "profiles#show"
+  resources :lawyer_tags, only: [:new, :create, :destroy]
+  resources :lawyer_categories, only: [:new, :create, :destroy]
 
   patch "restaurants/:id", to: "restaurants#update"
 
