@@ -105,7 +105,7 @@
       <i class="fa-solid fa-paper-plane"></i>
     <% end %>
   <%end%>
-
+  <% end %>
   <% if user_signed_in? && @user == current_user %>
   <%= link_to "Add a Tag", new_lawyer_tag_path %>
   <%= link_to "Add a Category", new_lawyer_category_path %>
