@@ -21,10 +21,20 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 300 }
 
   include PgSearch::Model
-  pg_search_scope :global_search,
+  pg_search_scope :location_search,
     against: [:address],
+    using: {
+      tsearch: { prefix: true }
+    }
+  pg_search_scope :tag_search,
     associated_against: {
-      tags: [:name],
+      tags: [:name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+  pg_search_scope :category_search,
+    associated_against: {
       categories: [:name]
     },
     using: {
