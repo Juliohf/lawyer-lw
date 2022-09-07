@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 300 }
 
   include PgSearch::Model
-  pg_search_scope :address_search,
+  pg_search_scope :location_search,
     against: [:address],
     using: {
       tsearch: { prefix: true }

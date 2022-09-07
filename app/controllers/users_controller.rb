@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @tag = ""
-    @category = ""
-    @location = ""
-    @nocategory = "I do not know"
+
+    @category = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_BXFnpWroeziNSAgyePWV2BRnp62MD6CyDiNZC1dsKLVh_3pdYTMpLQaLvTy').responses[0].answers[1].text
+    @location = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_BXFnpWroeziNSAgyePWV2BRnp62MD6CyDiNZC1dsKLVh_3pdYTMpLQaLvTy').responses[0].answers[0].text
+    @nocategory = "I'm not sure"
 
     if @category == @nocategory
+      @tag =  ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_BXFnpWroeziNSAgyePWV2BRnp62MD6CyDiNZC1dsKLVh_3pdYTMpLQaLvTy').responses[0].answers[2].choice.label
       if @location.empty?
         @lawyers = policy_scope(User.tag_search(@tag))
       else
