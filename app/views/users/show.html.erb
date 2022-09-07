@@ -6,6 +6,7 @@
       <p><%= @user.oab %></p>
       <p><%= @user.description %></p>
     </div>
+
     <div class= "row">
       <div class="col col-1">
         <i class="fa-solid fa-mobile-retro"></i>
@@ -20,68 +21,42 @@
         <p><%= @user.email %></p>
       </div>
     </div>
+
     <p><%= @user.average_rating %></p>
     <div class= "d-flex justify-content-center">
-      <%= link_to  chatroom_path(3) do %>
-        <i class="fa-solid fa-paper-plane"></i>
-      <% end %>
-    </div>
-  </div>
-  <p><%= @user.average_rating %></p>
-  <% if user_signed_in? %>
-    <% if Chatroom.where({lawyer_id: @user.id, client_id: current_user.id}).empty? %>
-      <%= simple_form_for [@user, @chatroom] do |f| %>
-        <%= f.submit %>
-      <% end %>
-    <%  else %>
-      <% caminho = Chatroom.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
-        <%= link_to  chatroom_path(caminho) do %>
-        <i class="fa-solid fa-paper-plane"></i>
-      <% end %>
-    <% end %>
-  <% else %>
-    <%= simple_form_for [@user, @chatroom] do |f| %>
-      <%= f.submit %>
-    <% end %>
-  <% end %>
 
-  <% else %>
-  <p><%= @user.name %></p>
-  <p><%= @user.email %></p>
-  <p><%= @user.phone %></p>
-  <%end%>
-
-      <% if @user.user_type == "lawyer" %>
-        <p><strong>Reviews</strong></p>
-        <ul class="list-group">
-          <% @user.reviews.each do |review| %>
-            <li class="list-group-item"><%= review.comments %></li>
-            <li class="list-group-item"><%= review.ratings %></li>
-          <% end %>
-        </ul>
-
-        <%= simple_form_for [@user, @review] do |f| %>
-          <%= f.input :comments %>
-          <%= f.input :ratings %>
-          <div class= "d-flex justify-content-center">
-            <%= button_tag type: 'submit' , class: "message_button" do %>
-              <i class="fa-solid fa-paper-plane"></i>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
-    <p><%= @user.average_rating %></p>
-
-    <% if current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}) != true %>
+      <% if current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first.nil? %>
       <%= simple_form_for [@user, @chatroom] do |f| %>
         <%= f.submit %>
       <% end %>
     <%  else %>
       <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
         <%= link_to  chatroom_path(caminho) do %>
-          <i class="fa-solid fa-paper-plane"></i>
+          <i class="fa-regular fa-message"></i>
         <% end %>
     <% end %>
+    </div>
+      <% if @user.user_type == "lawyer" %>
+        <p><strong>Reviews</strong></p>
+        <ul class="list-group">
+            <% @user.reviews.each do |review| %>
+                <li class="list-group-item"><%= review.comments %></li>
+                <li class="list-group-item"><%= review.ratings %></li>
+            <% end %>
+        </ul>
+
+        <%= simple_form_for [@user, @review] do |f| %>
+            <%= f.input :comments %>
+            <%= f.input :ratings %>
+              <div class= "d-flex justify-content-center">
+                <%= button_tag type: 'submit' , class: "message_button" do %>
+                  <i class="fa-solid fa-paper-plane"></i>
+                <% end %>
+              </div>
+          <% end %>
+        <% end %>
+
+    <p><%= @user.average_rating %></p>
 
   <% else %>
      <div class= "showuser">
@@ -100,30 +75,29 @@
         <div class="col col-5">
           <p><%= @user.email %></p>
         </div>
-    </div>
-    <%= link_to  chatroom_path(3) do %>
-      <i class="fa-solid fa-paper-plane"></i>
-    <% end %>
+      </div>
   <%end%>
 
   <% if user_signed_in? && @user == current_user %>
-  <%= link_to "Add a Tag", new_lawyer_tag_path %>
-  <%= link_to "Add a Category", new_lawyer_category_path %>
+    <%= link_to "Add a Tag", new_lawyer_tag_path %>
+    <%= link_to "Add a Category", new_lawyer_category_path %>
   <% end %>
+
   <% @user.lawyer_tags.each do |ltag|%>
-  <p>
-  <%= ltag.tag.name %>
-  <% if policy(ltag).destroy? %>
-  <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+    <p>
+      <%= ltag.tag.name %>
+      <% if policy(ltag).destroy? %>
+      <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+      <% end %>
+    </p>
   <% end %>
-  </p>
-  <% end %>
-    <% @user.lawyer_categories.each do |lcategory|%>
-  <p>
-  <%= lcategory.category.name %>
-  <% if policy(lcategory).destroy? %>
-  <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
-  <% end %>
-  </p>
+
+  <% @user.lawyer_categories.each do |lcategory|%>
+    <p>
+      <%= lcategory.category.name %>
+      <% if policy(lcategory).destroy? %>
+      <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+      <% end %>
+    </p>
   <% end %>
 </div>
