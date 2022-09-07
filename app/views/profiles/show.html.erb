@@ -13,14 +13,18 @@
       <ul>
         <% @chatrooms_as_client.each do |chatroom|%>
          <div class="card-white">
-           <%= cl_image_tag chatroom.client.photo.key, class: "img-circle" %>
-           <div class="card-profile-infos">
-              <p> <%= chatroom.lawyer.name %> </p>
-           </div>
-           <%= link_to  chatroom_path(chatroom) do %>
-             <i class="fa-solid fa-message"></i>
-           <% end %>
-         </div>
+          <div class="notification">
+            <%= cl_image_tag chatroom.client.photo.key, class: "img-circle" %>
+            <div class="notification-content">
+              <p><%= chatroom.lawyer.name %></p>
+              <div class="notification-actions">
+                <%= link_to  chatroom_path(chatroom) do %>
+                  <i class="fa-solid fa-message"> Chat </i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
         <% end %>
       </ul>
     </div>
@@ -39,16 +43,20 @@
       <ul>
       <% @chatrooms_as_client.each do |chatroom|%>
           <div class="card-white">
+            <div class="notification">
               <%= cl_image_tag chatroom.lawyer.photo.key, class: "img-circle" %>
-              <div class="card-profile-infos">
-                <h2> <%= chatroom.lawyer.name %> </h2>
-                <%= link_to  chatroom_path(chatroom) do %>
-                  <i class="fa-solid fa-message"></i>
-                <% end %>
-                <ul>
-                  <%= link_to "Review this lawyer", user_path(chatroom.lawyer.id), class:"btn-ghost" %>
-                </ul>
+              <div class="notification-content">
+                <p><%= chatroom.lawyer.name %></p>
+                <div class="notification-actions">
+                  <%= link_to  chatroom_path(chatroom) do %>
+                    <i class="fa-solid fa-message"> Chat </i>
+                  <% end %>
+                  <ul>
+                    <%= link_to "Review", user_path(chatroom.lawyer.id), class:"btn-ghost", class:"fa-sharp fa-solid fa-pencil" %>
+                  </ul>
+                </div>
               </div>
+            </div>
           </div>
         <% end %>
       </ul>
