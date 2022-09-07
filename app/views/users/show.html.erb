@@ -11,7 +11,7 @@
       <div class="col col-1">
         <i class="fa-solid fa-mobile-retro"></i>
       </div>
-      <div class="col col-5"> 
+      <div class="col col-5">
         <p><%= @user.phone %></p>
       </div>
       <div class="col col-1">
@@ -32,7 +32,7 @@
     <%  else %>
       <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
         <%= link_to  chatroom_path(caminho) do %>
-          <i class="fa-regular fa-message"></i>
+          <i class="fa-solid fa-message"></i> Chat
         <% end %>
     <% end %>
     </div>
@@ -50,7 +50,7 @@
             <%= f.input :ratings %>
               <div class= "d-flex justify-content-center">
                 <%= button_tag type: 'submit' , class: "message_button" do %>
-                  <i class="fa-solid fa-paper-plane"></i>
+                  <i class="fa-solid fa-paper-plane"></i> Review
                 <% end %>
               </div>
           <% end %>

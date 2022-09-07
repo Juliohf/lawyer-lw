@@ -19,7 +19,7 @@
               <p><%= chatroom.lawyer.name %></p>
               <div class="notification-actions">
                 <%= link_to  chatroom_path(chatroom) do %>
-                  <i class="fa-solid fa-message"> Chat </i>
+                  <i class="fa-solid fa-message"></i> Chat
                 <% end %>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 <p><%= chatroom.lawyer.name %></p>
                 <div class="notification-actions">
                   <%= link_to  chatroom_path(chatroom) do %>
-                    <i class="fa-solid fa-message"> Chat </i>
+                    <i class="fa-solid fa-message"></i> Chat
                   <% end %>
                   <ul>
                     <%= link_to "Review", user_path(chatroom.lawyer.id), class:"btn-ghost", class:"fa-sharp fa-solid fa-pencil" %>
