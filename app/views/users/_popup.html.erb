@@ -1,0 +1,7 @@
+<div>
+  <%= link_to user_path(user) do %>
+    <%= cl_image_tag user.photo.key, class: "avatar" %>
+    <p class="text-decoration-none"><%= user.name %></p>
+    <p class="text-decoration-none"><%= user.description %></p>
+  <% end %>
+</div>

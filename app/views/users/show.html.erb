@@ -89,6 +89,7 @@
       <% if policy(ltag).destroy? %>
       <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
       <% end %>
+
     </p>
   <% end %>
 
@@ -98,6 +99,7 @@
       <% if policy(lcategory).destroy? %>
       <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
       <% end %>
+
     </p>
   <% end %>
 </div>
