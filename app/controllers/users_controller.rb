@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
 
-    @category = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_BXFnpWroeziNSAgyePWV2BRnp62MD6CyDiNZC1dsKLVh_3pdYTMpLQaLvTy').responses[0].answers[1].text
-    @location = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_BXFnpWroeziNSAgyePWV2BRnp62MD6CyDiNZC1dsKLVh_3pdYTMpLQaLvTy').responses[0].answers[0].text
+    @category = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: ENV["TYPEFORM_API_TOKEN"]).responses[0].answers[1].text
+    @location = ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: ENV["TYPEFORM_API_TOKEN"]).responses[0].answers[0].text
     @nocategory = "I'm not sure..."
 
     if @category == @nocategory
-      @tag =  ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: 'tfp_5CUAim62DW8oE1FJWmi3Uj32R6d22TqhE5JetZthYzLQ_3mNZ3CjtrpP96s').responses[0].answers[2].choice.label
+      @tag =  ResponsesApi::RetrieveResponsesRequest.execute('HAd1hkqJ', token: ENV["TYPEFORM_API_TOKEN"]).responses[0].answers[2].choice.label
       if @location.empty?
         @lawyers = policy_scope(User.tag_search(@tag))
       else
@@ -43,4 +43,5 @@ class UsersController < ApplicationController
     # No need for app/views/restaurants/update.html.erb
     redirect_to user_path(@user)
   end
+end
 end
