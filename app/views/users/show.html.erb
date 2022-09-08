@@ -31,7 +31,7 @@
       <% end %>
     <%  else %>
       <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
-        <%= link_to  chatroom_path(caminho) do %>
+        <%= link_to chatroom_path(caminho), style: "color: black;" do %>
           <i class="fa-solid fa-message"></i> Chat
         <% end %>
     <% end %>
