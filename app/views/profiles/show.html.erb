@@ -48,11 +48,13 @@
               <div class="notification-content">
                 <p><%= chatroom.lawyer.name %></p>
                 <div class="notification-actions">
-                  <%= link_to  chatroom_path(chatroom) do %>
-                    <i class="fa-solid fa-message"></i> Chat
-                  <% end %>
                   <ul>
-                    <%= link_to "Review", user_path(chatroom.lawyer.id), class:"btn-ghost", class:"fa-sharp fa-solid fa-pencil" %>
+                    <%= link_to  chatroom_path(chatroom) do %>
+                      <i class="fa-solid fa-message"></i> Chat
+                    <% end %>
+                    <%= link_to user_path(chatroom.lawyer.id), class:"btn", style: "padding-right: 0px; font-weight: bold;" do %>
+                      <i class="fa-sharp fa-solid fa-pencil"></i> Review
+                    <% end %>
                   </ul>
                 </div>
               </div>
