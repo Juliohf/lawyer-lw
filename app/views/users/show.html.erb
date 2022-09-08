@@ -40,12 +40,11 @@
         <%= f.submit %>
       <% end %>
     <%  else %>
-      <div>
-        <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
-          <%= link_to  chatroom_path(caminho) do %>
-            <i class="fa-solid fa-message"></i> Chat
-          <% end %>
-      </div>
+
+      <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
+        <%= link_to chatroom_path(caminho), style: "color: black;" do %>
+          <i class="fa-solid fa-message"></i> Chat
+        <% end %>
     <% end %>
     </div>
       <% if @user.user_type == "lawyer" %>
