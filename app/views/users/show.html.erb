@@ -1,7 +1,7 @@
 <div class="container background_review">
   <% if @user.user_type == "lawyer" %>
     <div class= "showlawyer">
-      <%= cl_image_tag @user.photo.key, class: "avatar-super mt-5" %>
+      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
       <h2> <%= @user.name %></h2>
       <p><%= @user.oab %></p>
         <% @user.lawyer_categories.each do |lcategory|%>
@@ -111,5 +111,4 @@
       </p>
     </div>
   <% end %>
-
 </div>
