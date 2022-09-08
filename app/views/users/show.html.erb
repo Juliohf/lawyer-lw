@@ -58,7 +58,6 @@
 
         <%= simple_form_for [@user, @review] do |f| %>
             <%= f.input :comments %>
-            <%= f.input :ratings %>
               <div class= "d-flex justify-content-center">
                 <%= button_tag type: 'submit' , class: "message_button" do %>
                   <i class="fa-solid fa-paper-plane"></i> Review
