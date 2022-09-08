@@ -1,7 +1,6 @@
 <div class="popup text-decoration-none">
   <%= link_to user_path(user) do %>
     <%= cl_image_tag user.photo.key, class: "avatar" %>
-    <p><%= user.name %></p>
-    <p><%= user.description %></p>
+    <p class="my-2"><%= user.name %></p>
   <% end %>
 </div>
