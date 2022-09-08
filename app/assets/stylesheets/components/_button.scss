@@ -2,3 +2,24 @@
   border: none;
   background-color: transparent;
 }
+
+.tags{
+  height: 1.5rem;
+  padding: 0;
+  text-decoration: none;
+}
+
+.categories{
+  height: 1.5rem;
+  padding: 0;
+  text-decoration: none;
+}
+
+.show.btn a{
+  color: $dark-brown;
+}
+
+.tags.show.btn{
+  background-color: $med-brown;
+  color: $light-brown;
+}

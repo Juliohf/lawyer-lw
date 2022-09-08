@@ -1,7 +1,7 @@
 <div class="container background_profile">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= simple_form_for[(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }), @lawyer_tag] do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
@@ -15,6 +15,13 @@
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "description" }%>
+        <h2>Add a new tag</h2>
+        <%= f.input :tag,
+                    collection: Tag.all,
+                    input_html: {
+                      multiple: true,
+                      data: { controller: 'tom-select' }
+                    } %>
       <% else %>
         <%= f.input :cpf,
                   required: true,
