@@ -4,6 +4,16 @@
       <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
       <h2> <%= @user.name %></h2>
       <p><%= @user.oab %></p>
+        <% @user.lawyer_categories.each do |lcategory|%>
+          <div class="categories show btn border-dark px-2">
+            <p>
+              <%= lcategory.category.name %>
+              <% if policy(lcategory).destroy? %>
+              <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
       <p><%= @user.description %></p>
     </div>
 
@@ -30,6 +40,7 @@
         <%= f.submit %>
       <% end %>
     <%  else %>
+
       <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
         <%= link_to chatroom_path(caminho), style: "color: black;" do %>
           <i class="fa-solid fa-message"></i> Chat
@@ -77,29 +88,26 @@
         </div>
       </div>
   <%end%>
+  <div>
+    <% if user_signed_in? && @user == current_user %>
+      <div class="btn btn-light">
+        <%= link_to "Add a Tag", new_lawyer_tag_path %>
+      </div>
+      <div class="btn btn-light">
+        <%= link_to "Add a Category", new_lawyer_category_path %>
+      </div>
+    <% end %>
+  </div>
 
-  <% if user_signed_in? && @user == current_user %>
-    <%= link_to "Add a Tag", new_lawyer_tag_path %>
-    <%= link_to "Add a Category", new_lawyer_category_path %>
-  <% end %>
 
   <% @user.lawyer_tags.each do |ltag|%>
-    <p>
-      <%= ltag.tag.name %>
-      <% if policy(ltag).destroy? %>
-      <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
-      <% end %>
-
-    </p>
-  <% end %>
-
-  <% @user.lawyer_categories.each do |lcategory|%>
-    <p>
-      <%= lcategory.category.name %>
-      <% if policy(lcategory).destroy? %>
-      <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
-      <% end %>
-
-    </p>
+    <div class="tags show btn px-2">
+      <p>
+        <%= ltag.tag.name %>
+        <% if policy(ltag).destroy? %>
+        <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+        <% end %>
+      </p>
+    </div>
   <% end %>
 </div>

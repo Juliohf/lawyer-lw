@@ -10,6 +10,9 @@ application.register("chatroom-subscription", ChatroomSubscriptionController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HomepageController from "./homepage_controller"
+application.register("homepage", HomepageController)
+
 import IndexpageController from "./indexpage_controller"
 application.register("indexpage", IndexpageController)
 
