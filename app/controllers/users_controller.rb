@@ -19,14 +19,10 @@ class UsersController < ApplicationController
     else
       @lawyers_location = User.location_search(@location)
       @lawyers = policy_scope(@lawyers_location.category_search(@category))
-    @lawyers = policy_scope(User)
+    end
 
     @markers = @lawyers.geocoded.map do |user|
       { lat: user.latitude, lng: user.longitude, info_window: render_to_string(partial: "popup", locals: {user: user})}
-    end
-    # @lawyers = policy_scope(User)
-    @markers = @lawyers.geocoded.map do |user|
-      { lat: user.latitude, lng: user.longitude }
     end
   end
 
@@ -43,5 +39,4 @@ class UsersController < ApplicationController
     # No need for app/views/restaurants/update.html.erb
     redirect_to user_path(@user)
   end
-end
 end
