@@ -1,7 +1,7 @@
 <div class="container background_review">
   <% if @user.user_type == "lawyer" %>
     <div class= "showlawyer">
-      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
+      <%= cl_image_tag @user.photo.key, class: "avatar-super mt-5 mb-5" %>
       <h2> <%= @user.name %></h2>
       <p><%= @user.oab %></p>
         <% @user.lawyer_categories.each do |lcategory|%>
@@ -49,22 +49,25 @@
     </div>
       <% if @user.user_type == "lawyer" %>
         <p><strong>Reviews</strong></p>
-        <ul class="list-group">
+        <div>
             <% @user.reviews.each do |review| %>
-                <li class="list-group-item"><%= review.comments %></li>
-                <li class="list-group-item"><%= review.ratings %></li>
+              <div class="card-review d-flex justify-content-between">
+                <div><%= review.comments %></div>
+                <div><%= review.ratings %></div>
+              </div>
             <% end %>
-        </ul>
-
+        </div>
+        <div class="container mt-3">
         <%= simple_form_for [@user, @review] do |f| %>
-            <%= f.input :comments %>
-            <%= f.input :ratings %>
+            <%= f.input :ratings, class: "stars", collection: (1..5).to_a, label: "Rate your lawyer", input_html: {data: {controller: "star-rating"}} %>
+            <%= f.input :comments, label: "How it was your experience?" %>
               <div class= "d-flex justify-content-center">
                 <%= button_tag type: 'submit' , class: "message_button" do %>
                   <i class="fa-solid fa-paper-plane"></i> Review
                 <% end %>
               </div>
           <% end %>
+        </div>
         <% end %>
 
     <p><%= @user.average_rating %></p>
@@ -90,12 +93,14 @@
   <%end%>
   <div>
     <% if user_signed_in? && @user == current_user %>
-      <div class="btn btn-light">
+    <div class="d-flex justify-content-center">
+      <div class="add btn btn-light">
         <%= link_to "Add a Tag", new_lawyer_tag_path %>
       </div>
-      <div class="btn btn-light">
+      <div class="add btn btn-light">
         <%= link_to "Add a Category", new_lawyer_category_path %>
       </div>
+    </div>
     <% end %>
   </div>
 

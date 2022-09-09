@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       @lawyers = policy_scope(@lawyers_location.category_search(@category))
     end
 
-
     @markers = @lawyers.geocoded.map do |user|
       { lat: user.latitude, lng: user.longitude, info_window: render_to_string(partial: "popup", locals: {user: user})}
     end
