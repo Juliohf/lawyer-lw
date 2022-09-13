@@ -1,22 +1,11 @@
 <div class="container background_review">
   <% if @user.user_type == "lawyer" %>
     <div class= "showlawyer">
-      <%= cl_image_tag @user.photo.key, class: "avatar-super mt-5 mb-5" %>
+      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
       <h2> <%= @user.name %></h2>
       <p><%= @user.oab %></p>
-        <% @user.lawyer_categories.each do |lcategory|%>
-          <div class="categories show btn border-dark px-2">
-            <p>
-              <%= lcategory.category.name %>
-              <% if policy(lcategory).destroy? %>
-              <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
-              <% end %>
-            </p>
-          </div>
-        <% end %>
       <p><%= @user.description %></p>
     </div>
-
     <div class= "row">
       <div class="col col-1">
         <i class="fa-solid fa-mobile-retro"></i>
@@ -31,24 +20,30 @@
         <p><%= @user.email %></p>
       </div>
     </div>
-
     <p><%= @user.average_rating %></p>
     <div class= "d-flex justify-content-center">
-
-      <% if current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first.nil? %>
+      <%= link_to  chatroom_path(3) do %>
+        <i class="fa-solid fa-paper-plane"></i>
+      <% end %>
+    </div>
+    <p><%= @user.average_rating %></p>
+    <% if user_signed_in? %>
+      <% if Chatroom.where({lawyer_id: @user.id, client_id: current_user.id}).empty? %>
+        <%= simple_form_for [@user, @chatroom] do |f| %>
+          <%= f.submit %>
+        <% end %>
+      <%  else %>
+        <% caminho = Chatroom.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
+          <%= link_to  chatroom_path(caminho) do %>
+          <i class="fa-solid fa-paper-plane"></i>
+        <% end %>
+      <% end %>
+    <% else %>
       <%= simple_form_for [@user, @chatroom] do |f| %>
         <%= f.submit %>
       <% end %>
-    <%  else %>
-
-      <% caminho = current_user.chatrooms_as_client.where({lawyer_id: @user.id, client_id: current_user.id}).first %>
-        <%= link_to chatroom_path(caminho), style: "color: black;" do %>
-          <i class="fa-solid fa-message"></i> Chat
-        <% end %>
     <% end %>
-    </div>
-      <% if @user.user_type == "lawyer" %>
-        <p><strong>Reviews</strong></p>
+      <p><strong>Reviews</strong></p>
         <div>
             <% @user.reviews.each do |review| %>
               <div class="card-review d-flex justify-content-between">
@@ -68,51 +63,27 @@
               </div>
           <% end %>
         </div>
-        <% end %>
-
     <p><%= @user.average_rating %></p>
 
-  <% else %>
-     <div class= "showuser">
-      <%= cl_image_tag @user.photo.key, class: "avatar-super" %>
-      <p><%= @user.name %></p>
-      <div class= "row">
-        <div class="col col-1">
-          <i class="fa-solid fa-mobile-retro"></i>
-        </div>
-        <div class="col col-5">
-          <p><%= @user.phone %></p>
-        </div>
-        <div class="col col-1">
-          <i class="fa-solid fa-envelope"></i>
-        </div>
-        <div class="col col-5">
-          <p><%= @user.email %></p>
-        </div>
-      </div>
-  <%end%>
-  <div>
     <% if user_signed_in? && @user == current_user %>
-    <div class="d-flex justify-content-center">
-      <div class="add btn btn-light">
-        <%= link_to "Add a Tag", new_lawyer_tag_path %>
-      </div>
-      <div class="add btn btn-light">
-        <%= link_to "Add a Category", new_lawyer_category_path %>
-      </div>
-    </div>
+    <%= link_to "Add a Tag", new_lawyer_tag_path %>
+    <%= link_to "Add a Category", new_lawyer_category_path %>
     <% end %>
-  </div>
-
-
-  <% @user.lawyer_tags.each do |ltag|%>
-    <div class="tags show btn px-2">
+    <% @user.lawyer_tags.each do |ltag|%>
       <p>
         <%= ltag.tag.name %>
         <% if policy(ltag).destroy? %>
-        <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+          <%= link_to 'x', lawyer_tag_path(ltag), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
         <% end %>
       </p>
-    </div>
-  <% end %>
+    <% end %>
+    <% @user.lawyer_categories.each do |lcategory|%>
+      <p>
+        <%= lcategory.category.name %>
+        <% if policy(lcategory).destroy? %>
+          <%= link_to 'x', lawyer_category_path(lcategory), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'card-remove-icon' %>
+        <% end %>
+      </p>
+    <% end %>
+  <%end%>
 </div>
